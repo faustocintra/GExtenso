@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>Docs For Class GExtenso</title>
+	<link rel="stylesheet" type="text/css" id="layout" href="../media/layout.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="../media/style.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../media/print.css" media="print">
+</head>
+
+<body>
+<div id="header">
+	<div id="navLinks">
+        
+                                    
+                            	        [ <a href="../classtrees_GUtils.html">Class Tree: GUtils</a> ]
+            [ <a href="../elementindex_GUtils.html">Index: GUtils</a> ]
+        		[ <a href="../elementindex.html">All elements</a> ]		
+	</div>
+	<div id="packagePosition">
+		<div id="packageTitle2">GUtils</div>
+		<div id="packageTitle">GUtils</div>
+		<div id="elementPath"> &middot; </div>
+	</div>
+</div>
+
+<div id="nav" class="small">
+	<div id="packages">
+		Packages:
+					<p><a href="../li_GUtils.html">GUtils</a></p>
+			</div>
+
+				<div id="index">
+			<div id="files">
+								Files:<br>
+								<a href="../GUtils/_GExtenso.php.html">		GExtenso.php
+		</a><br>
+				</div>
+			<div id="interfaces">
+							</div>
+			<div id="classes">
+				Classes:<br>
+								<a href="../GUtils/GExtenso.html">		GExtenso
+		</a><br>
+				</div>
+		</div>
+	</div>
+
+<div id="body">
+	    		<h1>Class: GExtenso</h1>
+	<p style="margin: 0px;">Source Location: /GExtenso.php</p>
+	
+
+<div class="leftcol">
+	<h3><a href="#class_details">Class Overview</a> <span class="smalllinenumber">[line <a href="../__filesource/fsource_GUtils__GExtenso.php.html#a50">50</a>]</span></h3>
+	<div id="classTree"><pre></pre>
+</div>
+	<div class="small">
+	<p>GExtenso é uma classe que gera a representação por extenso de um número ou valor monetário.</p>
+		<h4>Author(s):</h4>
+	<ul>
+								<li>Fausto Gonçalves Cintra (goncin) &lt;<a href="mailto:goncin@gmail.com">goncin@gmail.com</a>&gt;</li>
+											</ul>
+	<h4>Version:</h4>
+	<ul>
+													<li>0.1 2010-03-02</li>
+						</ul>
+
+	<h4>Copyright:</h4>
+	<ul>
+													</li>
+	</div>
+</div>
+
+<div class="middlecol">
+	<h3><a href="#class_vars">Variables</a></h3>
+	<ul class="small">
+			</ul>
+	<h3><a href="#class_consts">Constants</a></h3>
+	<ul class="small">
+				<li><a href="../GUtils/GExtenso.html#constGENERO_FEM">GENERO_FEM</a></li>
+				<li><a href="../GUtils/GExtenso.html#constGENERO_MASC">GENERO_MASC</a></li>
+				<li><a href="../GUtils/GExtenso.html#constNUM_PLURAL">NUM_PLURAL</a></li>
+				<li><a href="../GUtils/GExtenso.html#constNUM_SING">NUM_SING</a></li>
+				<li><a href="../GUtils/GExtenso.html#constPOS_GENERO">POS_GENERO</a></li>
+				<li><a href="../GUtils/GExtenso.html#constVALOR_MAXIMO">VALOR_MAXIMO</a></li>
+			</ul>
+</div>
+<div class="rightcol">
+	<h3><a href="#class_methods">Methods</a></h3>
+	<ul class="small">
+				<li><a href="../GUtils/GExtenso.html#methodmoeda">moeda</a></li>
+				<li><a href="../GUtils/GExtenso.html#methodnumero">numero</a></li>
+			</ul>
+</div>
+
+<div id="content">
+<hr>
+	<div class="contents">
+	</div>
+
+	<div class="leftCol">
+    	<h2>Inherited Variables</h2>
+		<h2>Inherited Constants</h2>
+		</div>
+
+	<div class="rightCol">
+	<h2>Inherited Methods</h2>
+		</div>
+	<br clear="all">
+	<hr>
+
+	<a name="class_details"></a>
+	<h2>Class Details</h2>
+	<p align="center"><strong>GExtenso é uma classe que gera a representação por extenso de um número ou valor monetário.
+</strong></p>
+<p>Sua implementação foi feita como prova de conceito, utilizando:</p><p><ul><li>Métodos estáticos, implementando o padrão de projeto (<em>design pattern</em>) <strong>SINGLETON</strong>;</li><li>Chamadas recursivas a métodos, minimizando repetições e mantendo o código enxuto;</li><li>Uso de pseudoconstantes ('private static') diante das limitações das constantes de classe;</li><li>Tratamento de erros por intermédio de exceções; e</li><li>Utilização do phpDocumentor (<a href="http://www.phpdoc.org">http://www.phpdoc.org</a>) para documentação do código fonte e
+ geração automática de documentação externa.</li></ul></p><p><strong>EXEMPLOS DE USO</strong></p><p>Para obter o extenso de um número, utilize GExtenso::<a href="../GUtils/GExtenso.html#methodnumero">numero</a>.  <pre> echo GExtenso::numero(832); // oitocentos e trinta e dois
+ echo GExtenso::numero(832, GExtenso::GENERO_FEM) // oitocentas e trinta e duas</pre></p><p>Para obter o extenso de um valor monetário, utilize GExtenso::<a href="../GUtils/GExtenso.html#methodmoeda">moeda</a>.  <pre> // IMPORTANTE: veja nota sobre o parâmetro 'valor' na documentação do método!
+ echo GExtenso::moeda(15402); // cento e cinquenta e quatro reais e dois centavos
+ echo GExtenso::moeda(47); // quarenta e sete centavos
+ echo GExtenso::moeda(357082, 2,
+   array('peseta', 'pesetas', GExtenso::GENERO_FEM),
+   array('cêntimo', 'cêntimos', GExtenso::GENERO_MASC));
+   // três mil, quinhentas e setenta pesetas e oitenta e dois cêntimos</pre></p><h4>Tags:</h4>
+<ul>
+	<li><b>author</b> - Fausto Gonçalves Cintra (goncin) &lt;<a href="mailto:goncin@gmail.com">goncin@gmail.com</a>&gt;</li>
+	<li><b>version</b> - 0.1 2010-03-02</li>
+</ul>
+	<p class="small" style="color: #334B66;">[ <a href="#top">Top</a> ]</p>
+
+	<hr>
+	<a name="class_vars"></a>
+	<h2>Class Variables</h2>
+	
+	<hr>
+	<a name="class_methods"></a>
+	<h2>Class Methods</h2>
+		<a name="methodmoeda"></a>
+	<p></p>
+	<h3>static moeda</h3>
+	<div class="indent">
+		<p>
+		<code>static string moeda(
+int
+$valor, [int
+$casasDecimais = 2], [array
+$infoUnidade = array('real', 'reais', self::GENERO_MASC)], [array
+$infoFracao = array('centavo', 'centavos', self::GENERO_MASC)])</code>
+		</p>
+	
+		<p class="linenumber">[line <a href="../__filesource/fsource_GUtils__GExtenso.php.html#a285">285</a>]</p>
+		<p align="center"><strong>Gera a representação por extenso de um valor monetário, maior que zero e menor ou igual a GExtenso::VALOR_MAXIMO.
+</strong></p>
+<h4>Tags:</h4>
+<ul>
+	<li><b>return</b> - O valor monetário por extenso</li>
+	<li><b>since</b> - 0.1 2010-03-02</li>
+	<li><b>access</b> - public</li>
+</ul>
+		
+	
+	<h4>Parameters:</h4>
+	<ul>
+			<li>
+		<span class="type">int</span>
+		<b>$valor</b> 
+		- 
+		O valor monetário cujo extenso se deseja gerar.  ATENÇÃO: PARA EVITAR OS CONHECIDOS PROBLEMAS DE ARREDONDAMENTO COM NÚMEROS DE PONTO FLUTUANTE, O VALOR DEVE SER PASSADO  JÁ DEVIDAMENTE MULTIPLICADO POR 10 ELEVADO A $casasDecimais (o que equivale, normalmente, a passar o valor com centavos  multiplicado por 100)</li>
+			<li>
+		<span class="type">int</span>
+		<b>$casasDecimais</b> 
+		- 
+		(Opcional; valor padrão: 2) Número de casas decimais a serem consideradas como parte fracionária (centavos)</li>
+			<li>
+		<span class="type">array</span>
+		<b>$infoUnidade</b> 
+		- 
+		(Opcional; valor padrão: array('real', 'reais', GExtenso::GENERO_MASC)) Fornece informações sobre a moeda a ser  utilizada. O primeiro valor da matriz corresponde ao nome da moeda no singular, o segundo ao nome da moeda no plural e o terceiro  ao gênero gramatical do nome da moeda (GExtenso::GENERO_MASC ou GExtenso::GENERO_FEM)</li>
+			<li>
+		<span class="type">array</span>
+		<b>$infoFracao</b> 
+		- 
+		(Opcional; valor padrão: array('centavo', 'centavos', self::GENERO_MASC)) Provê informações sobre a parte fracionária  da moeda. O primeiro valor da matriz corresponde ao nome da parte fracionária no singular, o segundo ao nome da parte fracionária no plural  e o terceiro ao gênero gramatical da parte fracionária (GExtenso::GENERO_MASC ou GExtenso::GENERO_FEM)</li>
+		</ul>
+	</div>
+	<p class="top">[ <a href="#top">Top</a> ]</p>
+	<a name="methodnumero"></a>
+	<p></p>
+	<h3>static numero</h3>
+	<div class="indent">
+		<p>
+		<code>static string numero(
+int
+$valor, [int
+$genero = self::GENERO_MASC])</code>
+		</p>
+	
+		<p class="linenumber">[line <a href="../__filesource/fsource_GUtils__GExtenso.php.html#a167">167</a>]</p>
+		<p align="center"><strong>Gera a representação por extenso de um número inteiro, maior que zero e menor ou igual a GExtenso::VALOR_MAXIMO.
+</strong></p>
+<h4>Tags:</h4>
+<ul>
+	<li><b>return</b> - O número por extenso</li>
+	<li><b>since</b> - 0.1 2010-03-02</li>
+	<li><b>access</b> - public</li>
+</ul>
+		
+	
+	<h4>Parameters:</h4>
+	<ul>
+			<li>
+		<span class="type">int</span>
+		<b>$valor</b> 
+		- 
+		O valor numérico cujo extenso se deseja gerar</li>
+			<li>
+		<span class="type">int</span>
+		<b>$genero</b> 
+		- 
+		(Opcional; valor padrão: GExtenso::GENERO_MASC) O gênero gramatical (GExtenso::GENERO_MASC ou GExtenso::GENERO_FEM)  do extenso a ser gerado. Isso possibilita distinguir, por exemplo, entre 'duzentos e dois homens' e 'duzentas e duas mulheres'.</li>
+		</ul>
+	</div>
+	<p class="top">[ <a href="#top">Top</a> ]</p>
+
+
+	<hr>
+	<a name="class_consts"></a>
+	<h2>Class Constants</h2>
+		<a name="constGENERO_FEM"></a>
+	<p></p>
+	<h4>GENERO_FEM = <span class="value">&nbsp;1</span></h4>
+	<div class="indent">
+		<p class="linenumber">[line <a href="../__filesource/fsource_GUtils__GExtenso.php.html#a56">56</a>]</p>
+			</div>
+	<p class="top">[ <a href="#top">Top</a> ]</p>
+	<a name="constGENERO_MASC"></a>
+	<p></p>
+	<h4>GENERO_MASC = <span class="value">&nbsp;0</span></h4>
+	<div class="indent">
+		<p class="linenumber">[line <a href="../__filesource/fsource_GUtils__GExtenso.php.html#a55">55</a>]</p>
+			</div>
+	<p class="top">[ <a href="#top">Top</a> ]</p>
+	<a name="constNUM_PLURAL"></a>
+	<p></p>
+	<h4>NUM_PLURAL = <span class="value">&nbsp;1</span></h4>
+	<div class="indent">
+		<p class="linenumber">[line <a href="../__filesource/fsource_GUtils__GExtenso.php.html#a53">53</a>]</p>
+			</div>
+	<p class="top">[ <a href="#top">Top</a> ]</p>
+	<a name="constNUM_SING"></a>
+	<p></p>
+	<h4>NUM_SING = <span class="value">&nbsp;0</span></h4>
+	<div class="indent">
+		<p class="linenumber">[line <a href="../__filesource/fsource_GUtils__GExtenso.php.html#a52">52</a>]</p>
+			</div>
+	<p class="top">[ <a href="#top">Top</a> ]</p>
+	<a name="constPOS_GENERO"></a>
+	<p></p>
+	<h4>POS_GENERO = <span class="value">&nbsp;2</span></h4>
+	<div class="indent">
+		<p class="linenumber">[line <a href="../__filesource/fsource_GUtils__GExtenso.php.html#a54">54</a>]</p>
+			</div>
+	<p class="top">[ <a href="#top">Top</a> ]</p>
+	<a name="constVALOR_MAXIMO"></a>
+	<p></p>
+	<h4>VALOR_MAXIMO = <span class="value">&nbsp;999999999</span></h4>
+	<div class="indent">
+		<p class="linenumber">[line <a href="../__filesource/fsource_GUtils__GExtenso.php.html#a58">58</a>]</p>
+			</div>
+	<p class="top">[ <a href="#top">Top</a> ]</p>
+</div>
+	<div id="credit">
+		<hr>
+		Documentation generated on Tue, 02 Mar 2010 15:27:09 -0300 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+	</div>
+</div>
+</body>
+</html>
