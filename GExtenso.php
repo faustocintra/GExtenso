@@ -2,46 +2,49 @@
 /**
  * GExtenso class file
  *
- * @author Fausto GonÁalves Cintra (goncin) <goncin@gmail.com>
+ * @author Fausto Gon√ßalves Cintra (goncin) <goncin@gmail.com>
  * @link http://devfranca.ning.com
  * @link http://twitter.com/g0nc1n
  * @license http://creativecommons.org/licenses/LGPL/2.1/deed.pt
  */
 
 /**
- * GExtenso È uma classe que gera a representaÁ„o por extenso de um n˙mero ou valor monet·rio.
+ * GExtenso √© uma classe que gera a representa√ß√£o por extenso de um n√∫mero ou valor monet√°rio.
  *
- * Sua implementaÁ„o foi feita como prova de conceito, utilizando:
+ * ATEN√á√ÉO: A P√ÅGINA DE C√ìDIGO DESTE ARQUIVO √â UTF-8 (Unicode)!
+ * 
+ * Sua implementa√ß√£o foi feita como prova de conceito, utilizando:
+ *
  *
  * <ul>
- * <li>MÈtodos est·ticos, implementando o padr„o de projeto (<i>design pattern</i>) <b>SINGLETON</b>;</li>
- * <li>Chamadas recursivas a mÈtodos, minimizando repetiÁıes e mantendo o cÛdigo enxuto;</li>
- * <li>Uso de pseudoconstantes ('private static') diante das limitaÁıes das constantes de classe;</li>
- * <li>Tratamento de erros por intermÈdio de exceÁıes; e</li>
- * <li>UtilizaÁ„o do phpDocumentor ({@link http://www.phpdoc.org}) para documentaÁ„o do cÛdigo fonte e
- * geraÁ„o autom·tica de documentaÁ„o externa.</li>
+ * <li>M√©todos est√°ticos, implementando o padr√£o de projeto (<i>design pattern</i>) <b>SINGLETON</b>;</li>
+ * <li>Chamadas recursivas a m√©todos, minimizando repeti√ß√µes e mantendo o c√≥digo enxuto;</li>
+ * <li>Uso de pseudoconstantes ('private static') diante das limita√ß√µes das constantes de classe;</li>
+ * <li>Tratamento de erros por interm√©dio de exce√ß√µes; e</li>
+ * <li>Utiliza√ß√£o do phpDocumentor ({@link http://www.phpdoc.org}) para documenta√ß√£o do c√≥digo fonte e
+ * gera√ß√£o autom√°tica de documenta√ß√£o externa.</li>
  * </ul>
  *
  * <b>EXEMPLOS DE USO</b>
  *
- * Para obter o extenso de um n˙mero, utilize GExtenso::{@link numero}.
+ * Para obter o extenso de um n√∫mero, utilize GExtenso::{@link numero}.
  * <pre>
  * echo GExtenso::numero(832); // oitocentos e trinta e dois
  * echo GExtenso::numero(832, GExtenso::GENERO_FEM) // oitocentas e trinta e duas
  * </pre>
  *
- * Para obter o extenso de um valor monet·rio, utilize GExtenso::{@link moeda}.
+ * Para obter o extenso de um valor monet√°rio, utilize GExtenso::{@link moeda}.
  * <pre>
- * // IMPORTANTE: veja nota sobre o par‚metro 'valor' na documentaÁ„o do mÈtodo!
+ * // IMPORTANTE: veja nota sobre o par√¢metro 'valor' na documenta√ß√£o do m√©todo!
  * echo GExtenso::moeda(15402); // cento e cinquenta e quatro reais e dois centavos
  * echo GExtenso::moeda(47); // quarenta e sete centavos
  * echo GExtenso::moeda(357082, 2,
  *   array('peseta', 'pesetas', GExtenso::GENERO_FEM),
- *   array('cÍntimo', 'cÍntimos', GExtenso::GENERO_MASC));
- *   // trÍs mil, quinhentas e setenta pesetas e oitenta e dois cÍntimos
+ *   array('c√™ntimo', 'c√™ntimos', GExtenso::GENERO_MASC));
+ *   // tr√™s mil, quinhentas e setenta pesetas e oitenta e dois c√™ntimos
  * </pre>
  *
- * @author Fausto GonÁalves Cintra (goncin) <goncin@gmail.com>
+ * @author Fausto Gon√ßalves Cintra (goncin) <goncin@gmail.com>
  * @version 0.1 2010-03-02
  * @package GUtils
  *
@@ -57,16 +60,16 @@
 
   const VALOR_MAXIMO = 999999999;
 
-  /* Uma vez que o PHP n„o suporta constantes de classe na forma de matriz (array),
-    a saÌda encontrada foi declarar as strings numÈricas como 'private static'.
+  /* Uma vez que o PHP n√£o suporta constantes de classe na forma de matriz (array),
+    a sa√≠da encontrada foi declarar as strings num√©ricas como 'private static'.
   */
   
-  /* As unidades 1 e 2 variam em gÍnero, pelo que precisamos de dois conjuntos de strings (masculinas e femininas) para as unidades */
+  /* As unidades 1 e 2 variam em g√™nero, pelo que precisamos de dois conjuntos de strings (masculinas e femininas) para as unidades */
   private static $UNIDADES = array(
     self::GENERO_MASC => array(
       1 => 'um',
       2 => 'dois',
-      3 => 'trÍs',
+      3 => 'tr√™s',
       4 => 'quatro',
       5 => 'cinco',
       6 => 'seis',
@@ -77,7 +80,7 @@
     self::GENERO_FEM => array(
       1 => 'uma',
       2 => 'duas',
-      3 => 'trÍs',
+      3 => 'tr√™s',
       4 => 'quatro',
       5 => 'cinco',
       6 => 'seis',
@@ -113,8 +116,8 @@
 
   private static $CENTENA_EXATA = 'cem';
 
-  /* As centenas, com exceÁ„o de 'cento', tambÈm variam em gÍnero. Aqui tambÈm se faz
-    necess·rio dois conjuntos de strings (masculinas e femininas).
+  /* As centenas, com exce√ß√£o de 'cento', tamb√©m variam em g√™nero. Aqui tamb√©m se faz
+    necess√°rio dois conjuntos de strings (masculinas e femininas).
   */
 
   private static $CENTENAS = array(
@@ -142,48 +145,48 @@
     )
   );
 
-  /* 'Mil' È invari·vel, seja em gÍnero, seja em n˙mero */
+  /* 'Mil' √© invari√°vel, seja em g√™nero, seja em n√∫mero */
   private static $MILHAR = 'mil';
 
   private static $MILHOES = array(
-    self::NUM_SING => 'milh„o',
-    self::NUM_PLURAL => 'milhıes'
+    self::NUM_SING => 'milh√£o',
+    self::NUM_PLURAL => 'milh√µes'
   );
 
 
 
  /**
- * Gera a representaÁ„o por extenso de um n˙mero inteiro, maior que zero e menor ou igual a GExtenso::VALOR_MAXIMO.
+ * Gera a representa√ß√£o por extenso de um n√∫mero inteiro, maior que zero e menor ou igual a GExtenso::VALOR_MAXIMO.
  *
- * @param int O valor numÈrico cujo extenso se deseja gerar
+ * @param int O valor num√©rico cujo extenso se deseja gerar
  *
- * @param int (Opcional; valor padr„o: GExtenso::GENERO_MASC) O gÍnero gramatical (GExtenso::GENERO_MASC ou GExtenso::GENERO_FEM)
+ * @param int (Opcional; valor padr√£o: GExtenso::GENERO_MASC) O g√™nero gramatical (GExtenso::GENERO_MASC ou GExtenso::GENERO_FEM)
  * do extenso a ser gerado. Isso possibilita distinguir, por exemplo, entre 'duzentos e dois homens' e 'duzentas e duas mulheres'.
  *
- * @return string O n˙mero por extenso
+ * @return string O n√∫mero por extenso
  *
  * @since 0.1 2010-03-02
  */
   public static function numero($valor, $genero = self::GENERO_MASC) {
 
-    /* ----- VALIDA«√O DOS PAR¬METROS DE ENTRADA ---- */
+    /* ----- VALIDA√á√ÉO DOS PAR√ÇMETROS DE ENTRADA ---- */
 
     if(!is_numeric($valor))
-      throw new Exception("[ExceÁ„o em GExtenso::numero] Par‚metro \$valor n„o È numÈrico (recebido: '$valor')");
+      throw new Exception("[Exce√ß√£o em GExtenso::numero] Par√¢metro \$valor n√£o √© num√©rico (recebido: '$valor')");
 
     else if($valor <= 0)
-      throw new Exception("[ExceÁ„o em GExtenso::numero] Par‚metro \$valor igual a ou menor que zero (recebido: '$valor')");
+      throw new Exception("[Exce√ß√£o em GExtenso::numero] Par√¢metro \$valor igual a ou menor que zero (recebido: '$valor')");
 
     else if($valor > self::VALOR_MAXIMO)
-      throw new Exception('[ExceÁ„o em GExtenso::numero] Par‚metro $valor deve ser um inteiro entre 1 e ' . self::VALOR_MAXIMO . " (recebido: '$valor')");
+      throw new Exception('[Exce√ß√£o em GExtenso::numero] Par√¢metro $valor deve ser um inteiro entre 1 e ' . self::VALOR_MAXIMO . " (recebido: '$valor')");
 
     else if($genero != self::GENERO_MASC && $genero != self::GENERO_FEM)
-      throw new Exception("ExceÁ„o em GExtenso: valor incorreto para o par‚metro \$genero (recebido: '$genero').");
+      throw new Exception("Exce√ß√£o em GExtenso: valor incorreto para o par√¢metro \$genero (recebido: '$genero').");
 
     /* ----------------------------------------------- */
 
     else if($valor >= 1 && $valor <= 9)
-      return self::$UNIDADES[$genero][$valor]; // As unidades 'um' e 'dois' variam segundo o gÍnero
+      return self::$UNIDADES[$genero][$valor]; // As unidades 'um' e 'dois' variam segundo o g√™nero
 
     else if($valor == 10)
       return self::$DEZENAS[$valor];
@@ -194,8 +197,8 @@
     else if($valor >= 20 && $valor <= 99) {
       $dezena = $valor - ($valor % 10);
       $ret = self::$DEZENAS[$dezena];
-      /* Chamada recursiva ‡ funÁ„o para processar $resto se este for maior que zero.
-       * O conectivo 'e' È utilizado entre dezenas e unidades.
+      /* Chamada recursiva √† fun√ß√£o para processar $resto se este for maior que zero.
+       * O conectivo 'e' √© utilizado entre dezenas e unidades.
        */
       if($resto = $valor - $dezena) $ret .= ' e ' . self::numero($resto, $genero);
       return $ret;
@@ -207,52 +210,52 @@
 
     else if($valor >= 101 && $valor <= 999) {
       $centena = $valor - ($valor % 100);
-      $ret = self::$CENTENAS[$genero][$centena]; // As centenas (exceto 'cento') variam em gÍnero
-      /* Chamada recursiva ‡ funÁ„o para processar $resto se este for maior que zero.
-       * O conectivo 'e' È utilizado entre centenas e dezenas.
+      $ret = self::$CENTENAS[$genero][$centena]; // As centenas (exceto 'cento') variam em g√™nero
+      /* Chamada recursiva √† fun√ß√£o para processar $resto se este for maior que zero.
+       * O conectivo 'e' √© utilizado entre centenas e dezenas.
        */
       if($resto = $valor - $centena) $ret .= ' e ' . self::numero($resto, $genero);
       return $ret;
     }
 
     else if($valor >= 1000 && $valor <= 999999) {
-      /* A funÁ„o 'floor' È utilizada para encontrar o inteiro da divis„o de $valor por 1000,
-       * assim determinando a quantidade de milhares. O resultado È enviado a uma chamada recursiva
-       * da funÁ„o. A palavra 'mil' n„o se flexiona.
+      /* A fun√ß√£o 'floor' √© utilizada para encontrar o inteiro da divis√£o de $valor por 1000,
+       * assim determinando a quantidade de milhares. O resultado √© enviado a uma chamada recursiva
+       * da fun√ß√£o. A palavra 'mil' n√£o se flexiona.
        */
       $milhar = floor($valor / 1000);
-      $ret = self::numero($milhar, self::GENERO_MASC) . ' ' . self::$MILHAR; // 'Mil' È do gÍnero masculino
+      $ret = self::numero($milhar, self::GENERO_MASC) . ' ' . self::$MILHAR; // 'Mil' √© do g√™nero masculino
       $resto = $valor % 1000;
-      /* Chamada recursiva ‡ funÁ„o para processar $resto se este for maior que zero.
-       * O conectivo 'e' È utilizado entre milhares e n˙meros entre 1 e 99, bem como antes de centenas exatas.
+      /* Chamada recursiva √† fun√ß√£o para processar $resto se este for maior que zero.
+       * O conectivo 'e' √© utilizado entre milhares e n√∫meros entre 1 e 99, bem como antes de centenas exatas.
        */
       if($resto && (($resto >= 1 && $resto <= 99) || $resto % 100 == 0))
         $ret .= ' e ' . self::numero($resto, $genero);
-      /* Nos demais casos, apÛs o milhar È utilizada a vÌrgula. */
+      /* Nos demais casos, ap√≥s o milhar √© utilizada a v√≠rgula. */
       else if ($resto)
         $ret .= ', ' . self::numero($resto, $genero);
       return $ret;
     }
 
     else if($valor >= 100000 && $valor <= self::VALOR_MAXIMO) {
-      /* A funÁ„o 'floor' È utilizada para encontrar o inteiro da divis„o de $valor por 1000000,
-       * assim determinando a quantidade de milhıes. O resultado È enviado a uma chamada recursiva
-       * da funÁ„o. A palavra 'milh„o' flexiona-se no plural.
+      /* A fun√ß√£o 'floor' √© utilizada para encontrar o inteiro da divis√£o de $valor por 1000000,
+       * assim determinando a quantidade de milh√µes. O resultado √© enviado a uma chamada recursiva
+       * da fun√ß√£o. A palavra 'milh√£o' flexiona-se no plural.
        */
       $milhoes = floor($valor / 1000000);
-      $ret = self::numero($milhoes, self::GENERO_MASC) . ' '; // Milh„o e milhıes s„o do gÍnero masculino
+      $ret = self::numero($milhoes, self::GENERO_MASC) . ' '; // Milh√£o e milh√µes s√£o do g√™nero masculino
       
-      /* Se a o n˙mero de milhıes for maior que 1, deve-se utilizar a forma flexionada no plural */
+      /* Se a o n√∫mero de milh√µes for maior que 1, deve-se utilizar a forma flexionada no plural */
       $ret .= $milhoes == 1 ? self::$MILHOES[self::NUM_SING] : self::$MILHOES[self::NUM_PLURAL];
 
       $resto = $valor % 1000000;
 
-      /* Chamada recursiva ‡ funÁ„o para processar $resto se este for maior que zero.
-       * O conectivo 'e' È utilizado entre milhıes e n˙meros entre 1 e 99, bem como antes de centenas exatas.
+      /* Chamada recursiva √† fun√ß√£o para processar $resto se este for maior que zero.
+       * O conectivo 'e' √© utilizado entre milh√µes e n√∫meros entre 1 e 99, bem como antes de centenas exatas.
        */
       if($resto && (($resto >= 1 && $resto <= 99) || $resto % 100 == 0))
         $ret .= ' e ' . self::numero($resto, $genero);
-      /* Nos demais casos, apÛs o milh„o È utilizada a vÌrgula. */
+      /* Nos demais casos, ap√≥s o milh√£o √© utilizada a v√≠rgula. */
       else if ($resto)
         $ret .= ', ' . self::numero($resto, $genero);
       return $ret;
@@ -261,24 +264,24 @@
   }
 
  /**
- * Gera a representaÁ„o por extenso de um valor monet·rio, maior que zero e menor ou igual a GExtenso::VALOR_MAXIMO.
+ * Gera a representa√ß√£o por extenso de um valor monet√°rio, maior que zero e menor ou igual a GExtenso::VALOR_MAXIMO.
  *
- * @param int O valor monet·rio cujo extenso se deseja gerar.
- * ATEN«√O: PARA EVITAR OS CONHECIDOS PROBLEMAS DE ARREDONDAMENTO COM N⁄MEROS DE PONTO FLUTUANTE, O VALOR DEVE SER PASSADO
- * J¡ DEVIDAMENTE MULTIPLICADO POR 10 ELEVADO A $casasDecimais (o que equivale, normalmente, a passar o valor com centavos
+ * @param int O valor monet√°rio cujo extenso se deseja gerar.
+ * ATEN√á√ÉO: PARA EVITAR OS CONHECIDOS PROBLEMAS DE ARREDONDAMENTO COM N√öMEROS DE PONTO FLUTUANTE, O VALOR DEVE SER PASSADO
+ * J√Å DEVIDAMENTE MULTIPLICADO POR 10 ELEVADO A $casasDecimais (o que equivale, normalmente, a passar o valor com centavos
  * multiplicado por 100)
  *
- * @param int (Opcional; valor padr„o: 2) N˙mero de casas decimais a serem consideradas como parte fracion·ria (centavos)
+ * @param int (Opcional; valor padr√£o: 2) N√∫mero de casas decimais a serem consideradas como parte fracion√°ria (centavos)
  *
- * @param array (Opcional; valor padr„o: array('real', 'reais', GExtenso::GENERO_MASC)) Fornece informaÁıes sobre a moeda a ser
+ * @param array (Opcional; valor padr√£o: array('real', 'reais', GExtenso::GENERO_MASC)) Fornece informa√ß√µes sobre a moeda a ser
  * utilizada. O primeiro valor da matriz corresponde ao nome da moeda no singular, o segundo ao nome da moeda no plural e o terceiro
- * ao gÍnero gramatical do nome da moeda (GExtenso::GENERO_MASC ou GExtenso::GENERO_FEM)
+ * ao g√™nero gramatical do nome da moeda (GExtenso::GENERO_MASC ou GExtenso::GENERO_FEM)
  *
- * @param array (Opcional; valor padr„o: array('centavo', 'centavos', self::GENERO_MASC)) ProvÍ informaÁıes sobre a parte fracion·ria
- * da moeda. O primeiro valor da matriz corresponde ao nome da parte fracion·ria no singular, o segundo ao nome da parte fracion·ria no plural
- * e o terceiro ao gÍnero gramatical da parte fracion·ria (GExtenso::GENERO_MASC ou GExtenso::GENERO_FEM)
+ * @param array (Opcional; valor padr√£o: array('centavo', 'centavos', self::GENERO_MASC)) Prov√™ informa√ß√µes sobre a parte fracion√°ria
+ * da moeda. O primeiro valor da matriz corresponde ao nome da parte fracion√°ria no singular, o segundo ao nome da parte fracion√°ria no plural
+ * e o terceiro ao g√™nero gramatical da parte fracion√°ria (GExtenso::GENERO_MASC ou GExtenso::GENERO_FEM)
  *
- * @return string O valor monet·rio por extenso
+ * @return string O valor monet√°rio por extenso
  *
  * @since 0.1 2010-03-02
  */
@@ -289,56 +292,56 @@
     $infoFracao = array('centavo', 'centavos', self::GENERO_MASC)
   ) {
 
-    /* ----- VALIDA«√O DOS PAR¬METROS DE ENTRADA ---- */
+    /* ----- VALIDA√á√ÉO DOS PAR√ÇMETROS DE ENTRADA ---- */
 
     if(!is_numeric($valor))
-      throw new Exception("[ExceÁ„o em GExtenso::moeda] Par‚metro \$valor n„o È numÈrico (recebido: '$valor')");
+      throw new Exception("[Exce√ß√£o em GExtenso::moeda] Par√¢metro \$valor n√£o √© num√©rico (recebido: '$valor')");
 
     else if($valor <= 0)
-      throw new Exception("[ExceÁ„o em GExtenso::moeda] Par‚metro \$valor igual a ou menor que zero (recebido: '$valor')");
+      throw new Exception("[Exce√ß√£o em GExtenso::moeda] Par√¢metro \$valor igual a ou menor que zero (recebido: '$valor')");
 
     else if(!is_numeric($casasDecimais) || $casasDecimais < 0)
-      throw new Exception("[ExceÁ„o em GExtenso::moeda] Par‚metro \$casasDecimais n„o È numÈrico ou È menor que zero (recebido: '$casasDecimais')");
+      throw new Exception("[Exce√ß√£o em GExtenso::moeda] Par√¢metro \$casasDecimais n√£o √© num√©rico ou √© menor que zero (recebido: '$casasDecimais')");
 
     else if(!is_array($infoUnidade) || count($infoUnidade) < 3) {
       $infoUnidade = print_r($infoUnidade, true);
-      throw new Exception("[ExceÁ„o em GExtenso::moeda] Par‚metro \$infoUnidade n„o È uma matriz com 3 (trÍs) elementos (recebido: '$infoUnidade')");
+      throw new Exception("[Exce√ß√£o em GExtenso::moeda] Par√¢metro \$infoUnidade n√£o √© uma matriz com 3 (tr√™s) elementos (recebido: '$infoUnidade')");
     }
 
     else if($infoUnidade[self::POS_GENERO] != self::GENERO_MASC && $infoUnidade[self::POS_GENERO] != self::GENERO_FEM)
-      throw new Exception("ExceÁ„o em GExtenso: valor incorreto para o par‚metro \$infoUnidade[self::POS_GENERO] (recebido: '{$infoUnidade[self::POS_GENERO]}').");
+      throw new Exception("Exce√ß√£o em GExtenso: valor incorreto para o par√¢metro \$infoUnidade[self::POS_GENERO] (recebido: '{$infoUnidade[self::POS_GENERO]}').");
 
     else if(!is_array($infoFracao) || count($infoFracao) < 3) {
       $infoFracao = print_r($infoFracao, true);
-      throw new Exception("[ExceÁ„o em GExtenso::moeda] Par‚metro \$infoFracao n„o È uma matriz com 3 (trÍs) elementos (recebido: '$infoFracao')");
+      throw new Exception("[Exce√ß√£o em GExtenso::moeda] Par√¢metro \$infoFracao n√£o √© uma matriz com 3 (tr√™s) elementos (recebido: '$infoFracao')");
     }
 
     else if($infoFracao[self::POS_GENERO] != self::GENERO_MASC && $infoFracao[self::POS_GENERO] != self::GENERO_FEM)
-      throw new Exception("ExceÁ„o em GExtenso: valor incorreto para o par‚metro \$infoFracao[self::POS_GENERO] (recebido: '{$infoFracao[self::POS_GENERO]}').");
+      throw new Exception("Exce√ß√£o em GExtenso: valor incorreto para o par√¢metro \$infoFracao[self::POS_GENERO] (recebido: '{$infoFracao[self::POS_GENERO]}').");
 
     /* ----------------------------------------------- */
 
-    /* A parte inteira do valor monet·rio corresponde ao $valor passado dividido por 10 elevado a $casasDecimais, desprezado o resto.
-     * Assim, com o padr„o de 2 $casasDecimais, o $valor ser· dividido por 100 (10^2), e o resto È descartado utilizando-se floor().
+    /* A parte inteira do valor monet√°rio corresponde ao $valor passado dividido por 10 elevado a $casasDecimais, desprezado o resto.
+     * Assim, com o padr√£o de 2 $casasDecimais, o $valor ser√° dividido por 100 (10^2), e o resto √© descartado utilizando-se floor().
      */
     $parteInteira = floor($valor / pow(10, $casasDecimais));
 
-    /* A parte fracion·ria ('centavos'), por seu turno, corresponder· ao resto da divis„o do $valor por 10 elevado a $casasDecimais.
-     * No cen·rio comum em que trabalhamos com 2 $casasDecimais, ser· o resto da divis„o do $valor por 100 (10^2).
+    /* A parte fracion√°ria ('centavos'), por seu turno, corresponder√° ao resto da divis√£o do $valor por 10 elevado a $casasDecimais.
+     * No cen√°rio comum em que trabalhamos com 2 $casasDecimais, ser√° o resto da divis√£o do $valor por 100 (10^2).
      */
     $fracao = $valor % pow(10, $casasDecimais);
 
-    /* O extenso para a $parteInteira somente ser· gerado se esta for maior que zero. Para tanto, utilizamos
-     * os prÈstimos do mÈtodo GExtenso::numero().
+    /* O extenso para a $parteInteira somente ser√° gerado se esta for maior que zero. Para tanto, utilizamos
+     * os pr√©stimos do m√©todo GExtenso::numero().
      */
     if($parteInteira) {
       $ret = self::numero($parteInteira, $infoUnidade[self::POS_GENERO]) . ' ';
       $ret .= $parteInteira == 1 ? $infoUnidade[self::NUM_SING] : $infoUnidade[self::NUM_PLURAL];
     }
 
-    /* De forma semelhante, o extenso da $fracao somente ser· gerado se esta for maior que zero. */
+    /* De forma semelhante, o extenso da $fracao somente ser√° gerado se esta for maior que zero. */
     if($fracao) {
-      /* Se a $parteInteira for maior que zero, o extenso para ela j· ter· sido gerado. Antes de juntar os
+      /* Se a $parteInteira for maior que zero, o extenso para ela j√° ter√° sido gerado. Antes de juntar os
        * centavos, precisamos colocar o conectivo 'e'.
        */
       if ($parteInteira) $ret .= ' e ';
