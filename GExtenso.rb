@@ -37,9 +37,9 @@
 #
 # puts GExtenso.moeda(15402) # cento e cinquenta e quatro reais e dois centavos
 #
-# puts GExtenso::moeda(47)   # quarenta e sete centavos
+# puts GExtenso.moeda(47)   # quarenta e sete centavos
 #
-# puts GExtenso::moeda(357082, 2,
+# puts GExtenso.moeda(357082, 2,
 #   ['peseta', 'pesetas', GExtenso::GENERO_FEM],
 #   ['cêntimo', 'cêntimos', GExtenso::GENERO_MASC])
 #   # três mil, quinhentas e setenta pesetas e oitenta e dois cêntimos
