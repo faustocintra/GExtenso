@@ -19,9 +19,9 @@
 # ATENÇÃO: A PÁGINA DE CÓDIGO DESTE ARQUIVO É UTF-8 (Unicode)!
 # 
 # Sua implementação foi feita como prova de conceito, utilizando:
-# * Métodos estáticos, implementando o padrão de projeto ("design pattern") SINGLETON>;
-# * Chamadas recursivas a métodos, minimizando repetições e mantendo o código enxuto;
-# * Tratamento de erros por intermédio de exceções; e</li>
+# * Métodos estáticos, implementando o padrão de projeto ("design pattern") SINGLETON;
+# * Chamadas recursivas a métodos, minimizando repetições e mantendo o código enxuto; e
+# * Tratamento de erros por intermédio de exceções.
 #
 # = EXEMPLOS DE USO =
 #
