@@ -144,6 +144,79 @@ class GExtenso
     NUM_SING => 'milhão',
     NUM_PLURAL => 'milhões'
   }
+
+   UNIDADES_ORDINAL = {
+    GENERO_MASC => {
+      1 => 'primeiro',
+      2 => 'segundo',
+      3 => 'terceiro',
+      4 => 'quarto',
+      5 => 'quinto',
+      6 => 'sexto',
+      7 => 'sétimo',
+      8 => 'oitavo',
+      9 => 'nono'},
+    GENERO_FEM => {
+      1 => 'primeira',
+      2 => 'segunda',
+      3 => 'terceira',
+      4 => 'quarta',
+      5 => 'quinta',
+      6 => 'sexta',
+      7 => 'sétima',
+      8 => 'oitava',
+      9 => 'nona'}}
+
+  DEZENAS_ORDINAL = {
+    GENERO_MASC => {
+      10 => 'décimo',
+      20 => 'vigésimo',
+      30 => 'trigésimo',
+      40 => 'quadragésimo',
+      50 => 'quinquagésimo',
+      60 => 'sexagésimo',
+      70 => 'septuagésimo',
+      80 => 'octogésimo',
+      90 => 'nonagésimo'},
+    GENERO_FEM => {
+      10 => 'décima',
+      20 => 'vigésima',
+      30 => 'trigésima',
+      40 => 'quadragésima',
+      50 => 'quinquagésima',
+      60 => 'sexagésima',
+      70 => 'septuagésima',
+      80 => 'octogésima',
+      90 => 'nonagésima'}}
+   
+  CENTENAS_ORDINAL = {
+    GENERO_MASC => {
+      100 => 'centésimo',
+      200 => 'ducentésimo',
+      300 => 'trecentésimo',
+      400 => 'quadringentésimo',
+      500 => 'quingentésimo',
+      600 => 'seiscentésimo',
+      700 => 'septingentésimo',
+      800 => 'octingentésimo',
+      900 => 'noningentésimo'},
+    GENERO_FEM => {
+      100 => 'centésima',
+      200 => 'ducentésima',
+      300 => 'trecentésima',
+      400 => 'quadringentésima',
+      500 => 'quingentésima',
+      600 => 'seiscentésima',
+      700 => 'septingentésima',
+      800 => 'octingentésima',
+      900 => 'noningentésima'}}
+    
+  
+    MILHAR_ORDINAL = {
+      GENERO_MASC => {
+        1000 => 'milésimo'},
+      GENERO_FEM =>{
+        1000 => 'milésima'}}
   
   def self.is_int(s)
     Integer(s) != nil rescue false
@@ -345,5 +418,50 @@ class GExtenso
     ret
 
   end
+
+  ######################################################################################################################################################
+  def self.ordinal (valor, genero = GENERO_MASC)
+
+    # Gera a representação ordinal de um número inteiro de 1 à 1000
+
+    # PARÂMETROS:
+    # valor (Integer) O valor numérico cujo extenso se deseja gerar
+    #
+    # genero (Integer) [Opcional; valor padrão: GExtenso::GENERO_MASC] O gênero gramatical (GExtenso::GENERO_MASC ou GExtenso::GENERO_FEM)
+    # do extenso a ser gerado. Isso possibilita distinguir, por exemplo, entre 'duzentos e dois homens' e 'duzentas e duas mulheres'.
+    #
+    # VALOR DE RETORNO:
+    # (String) O número por extenso
+    
+    # ----- VALIDAÇÃO DOS PARÂMETROS DE ENTRADA ---- 
+    
+    if !is_int(valor)
+      raise "[Exceção em GExtenso.numero] Parâmetro 'valor' não é numérico (recebido: '#{valor}')"
+    elsif valor <= 0
+      raise "[Exceção em GExtenso.numero] Parâmetro 'valor' igual a ou menor que zero (recebido: '#{valor}')"
+    elsif valor > VALOR_MAXIMO
+      raise '[Exceção em GExtenso::numero] Parâmetro ''valor'' deve ser um inteiro entre 1 e ' + VALOR_MAXIMO.to_s + " (recebido: '#{valor}')"
+    elsif genero != GENERO_MASC && genero != GENERO_FEM
+      raise "Exceção em GExtenso: valor incorreto para o parâmetro 'genero' (recebido: '#{genero}')"
+  # ------------------------------------------------
+    elsif valor >= 1 && valor <= 9
+      return UNIDADES_ORDINAL[genero][valor]
+    elsif valor >= 10 && valor <= 99
+      dezena = valor - (valor % 10)
+      resto = valor - dezena
+      ret = DEZENAS_ORDINAL[genero][dezena]+" "
+      if resto > 0 then ret+= self.ordinal(resto,genero); end
+      return ret
+    elsif valor >= 100 && valor <= 999
+      centena = valor - (valor % 100)
+      resto = valor - centena 
+      ret = CENTENAS_ORDINAL[genero][centena]+" "
+      if resto > 0 then ret += self.ordinal(resto, genero); end
+      return ret
+    elsif valor == 1000
+      return MILHAR_ORDINAL[genero][valor]+" "
+    end
+  end
+
   
 end 
