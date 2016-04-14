@@ -331,6 +331,9 @@
      */
     $fracao = $valor % pow(10, $casasDecimais);
 
+      /* Inicia a variável $ret */
+      $ret = '';
+
     /* O extenso para a $parteInteira somente será gerado se esta for maior que zero. Para tanto, utilizamos
      * os préstimos do método GExtenso::numero().
      */
